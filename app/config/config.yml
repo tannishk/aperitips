@@ -1,6 +1,6 @@
 imports:
-    - { resource: parameters_platform.php }
     - { resource: parameters.yml }
+    - { resource: parameters_platform.php }
     - { resource: security.yml }
     - { resource: services.yml }
 
@@ -61,6 +61,13 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+# Doctrine Migration Configuration
+doctrine_migrations:
+    dir_name: '%kernel.root_dir%/Migrations'
+    namespace: Application\Migrations
+    table_name: migrations
+    name: Application Migrations
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
@@ -68,3 +75,20 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# LightSAML Configuration
+light_saml_symfony_bridge:
+    own:
+        entity_id: '%okta_domain%'
+        credentials:
+            -
+                certificate: '%kernel.root_dir%/../vendor/lightsaml/lightsaml/web/sp/saml.crt'
+                key:         '%kernel.root_dir%/../vendor/lightsaml/lightsaml/web/sp/saml.key'
+                password:    ~
+    party:
+        idp:
+            files:
+                - '%okta_domain%app/%okta_idp%/sso/saml/metadata'
+
+    store:
+        id_state: id_store
