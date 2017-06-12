@@ -1,13 +1,81 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="fr-FR">
+<head>
+    <title>Emakina.FR | Apéritips</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <meta charset="UTF-8">
+
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('assets/styles/reset.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/styles/main.css') }}">
+    {% endblock %}
+
+    {% block javascript %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+    {% endblock %}
+
+    {% block socialSharing %}
+
+    {% endblock %}
+
+</head>
+<body>
+
+{% block body %}
+    {% block push %}
+        <div id='push' class="push">
+            {% block pushContent %}{% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block header %}
+        <header>
+            <div class="header-container">
+                <h1 class="logo">
+                    <a href="https://emakina.fr/" title="Emakina.FR" target="_blank">
+                        <span class="hidden">Emakina</span>
+                        <img src="{{ asset('assets/images/logo_simple.svg') }}" alt="Emakina">
+                    </a>
+                </h1>
+
+                <nav id="nav" role="navigation">
+                    <ul>
+                        <li class="primary">
+                            <a href='#actus' title='Programme'>
+                                Actus
+                            </a>
+                        </li>
+
+                        <li class="secondary">
+                            <a href='#prochains-sujets' title='Prochains sujets'>
+                                Prochains sujets
+                            </a>
+                        </li>
+
+                        <li class="primary">
+                            <a href='#participants' title='Participant'>
+                                Participant
+                            </a>
+                        </li>
+                        <li class="secondary">
+                            <a href='#archive' title='Archive'>
+                                Archive
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    {% endblock %}
+
+    {% block main %}
+        <main>
+            {% block mainContent %}{% endblock %}
+        </main>
+    {% endblock %}
+
+{% endblock %}
+
+</body>
 </html>

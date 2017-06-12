@@ -1,0 +1,12 @@
+{
+  "camelcase"     : true,
+  "immed"         : true,
+  "latedef"       : true,
+  "newcap"        : true,
+  "nonew"         : true,
+  "quotmark"      : "single",
+  "moz"           : true,
+  "jquery"        : true,
+  "strict"        : false,
+  "node"          : true
+}

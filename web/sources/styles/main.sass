@@ -1,0 +1,326 @@
+// Variables
+
+$color--black: #000
+$color--black-background: #202020
+$color--black-opacity: rgba($color--black, .4)
+$color--white: #fff
+$color--text: #e9ecec
+$color--primary: #fb761c
+$color--secondary: #00a6e0
+
+$gutter-l: 60px
+
+$font-path: '../fonts/museosans-300-webfont'
+
+// Font
+@font-face
+  font-weight: normal
+  font-style: normal
+  font-family: 'museo_sans'
+  src: url('#{$font-path}.eot'), url('#{$font-path}.eot?#iefix') format('embedded-opentype'), url('#{$font-path}.woff2') format('woff2'), url('#{$font-path}.woff') format('woff'), url('#{$font-path}.ttf') format('truetype'), url('#{$font-path}.svg#museo_sans300') format('svg')
+
+
+// General
+html
+  font-size: 62.5%
+
+body
+  font-family: 'museo_sans', sans-serif
+  font-size: 1.6em
+  color: $color--text
+  line-height: 1.4
+  background: $color--black url('../images/Emakina_WebBuilding.jpg') fixed
+  background-size: cover
+
+*
+  box-sizing: border-box
+
+.hidden
+
+  display: none
+
+a
+  text-decoration: none
+  color: inherit
+
+p
+  margin-bottom: $gutter-l/4
+
+strong
+  color: $color--primary
+
+// header
+header
+  background: $color--black-opacity
+  text-transform: uppercase
+  font-size: 1em
+  z-index: 4
+  width: 100%
+  margin-top: -73px
+  transition: background 350ms ease
+
+  &.sticky
+    position: fixed
+    background: $color--black
+    top: 0
+    margin: 0
+
+  .header-container
+    width: 96%
+    padding: 0
+    margin-right: auto
+    margin-left: auto
+    display: flex
+    justify-content: space-between
+
+  .logo
+    padding: 28px 21px 0
+
+    img
+      width: 156px
+
+  nav
+    ul
+      display: flex
+
+      li
+        a
+          padding: 31px 20px 23px
+          display: block
+          background: transparent
+          transition: all 350ms ease
+
+        &.primary
+          a
+            background: transparent
+
+          &:hover,
+          &.active
+            background: $color--primary
+
+        &.secondary
+          a
+            background: transparent
+
+          &:hover,
+          &.active
+            background: $color--secondary
+
+// Push
+
+.push
+  padding: 60px
+  height: 100vh
+
+  p
+    text-shadow: 0 0 2px $color--black
+    max-width: 60%
+    background: $color--black-opacity
+    padding: 10px
+    font-size: 1.1em
+
+// Main
+
+main
+  > section
+    background: url('../images/grip.png') repeat
+    margin-bottom: $gutter-l*2
+    padding: $gutter-l*2 $gutter-l $gutter-l
+
+  &:last-child
+    margin-bottom: 0
+
+h2
+  font-size: 4em
+  padding: $gutter-l*2 0 $gutter-l/2
+  text-transform: uppercase
+  position: relative
+
+  &:before
+    content: ' '
+    width: $gutter-l
+    height: 2px
+    display: block
+    position: absolute
+    top: 80px
+    left: 0
+
+  &.primary
+    &:before
+      background: $color--primary
+
+  &.secondary
+    &:before
+      background: $color--secondary
+
+h3
+  font-size: 2.5em
+  padding: $gutter-l 0 $gutter-l/4
+  text-transform: uppercase
+
+h4
+  font-size: 1.4em
+  padding: $gutter-l/2 0 $gutter-l/4
+  position: relative
+
+  &:before
+    content: ' '
+    width: $gutter-l/2
+    height: 2px
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    background: $color--text
+
+.articles
+  display: flex
+  flex-wrap: wrap
+  margin: 0 -1.5%
+  width: calc(100% + 3%)
+
+  .article
+    background: $color--black-background
+    width: 30%
+    margin: 1.5%
+    padding: 30px
+
+    em
+      color: $color--secondary
+
+    p
+      opacity: .6
+
+      &:before
+        content: '«'
+        margin-right: 5px
+
+      &:after
+        content: '»'
+        margin-left: 5px
+
+    span
+      text-align: right
+      display: block
+      font-size: .8em
+      opacity: .2
+
+form
+  label
+    display: block
+    text-transform: uppercase
+    padding-bottom: 10px
+
+  input,
+  textarea
+    display: block
+    width: 100%
+    background: $color--black-background
+    border: 0
+    font-size: 1.4em
+    padding: $gutter-l/4
+    margin-bottom: $gutter-l/2
+    color: $color--text
+    outline-color: $color--secondary
+
+  textarea
+    height: 250px
+
+  input
+    [type='submit']
+      text-transform: uppercase
+      width: auto
+      margin: 0 auto
+      padding: $gutter-l/6 $gutter-l/4
+      background: $color--secondary
+
+.speakers
+  display: flex
+  flex-wrap: wrap
+  margin: 0 -1.5%
+  width: calc(100% + 3%)
+
+  .speaker
+    width: 30%
+    margin: 1.5%
+    text-align: center
+
+    .content-speaker
+      background: $color--black-background
+      padding-top: $gutter-l
+      margin-top: -$gutter-l
+
+    img
+      border-radius: 50%
+      display: block
+      margin: 0 auto
+      border-bottom: 1px solid
+      z-index: 1
+      position: relative
+
+    span
+      display: block
+
+      &.name
+        text-transform: uppercase
+        margin-top: $gutter-l/4
+
+      &.participations
+        text-transform: uppercase
+        margin-top: 5px
+        color: $color--primary
+        font-size: .7em
+        padding-bottom: $gutter-l/4
+
+    em
+      opacity: .5
+      font-size: .8em
+      display: block
+
+      &:before
+        content: '<'
+
+      &:after
+        content: '>'
+
+// vote
+
+.next-subject
+  .article
+    position: relative
+
+    &:after
+      content: 'Trop bien +1'
+      background: $color--secondary
+      position: absolute
+      display: block
+      z-index: 1
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      padding: 5px 15px
+      opacity: 0
+      transition: all 350ms ease
+
+    &:before
+      content: ' '
+      background: $color--black-background
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      display: block
+      z-index: 1
+      opacity: 0
+      transition: all 350ms ease
+
+    &:hover
+      cursor: pointer
+
+      &:after
+        opacity: 1
+
+      &:before
+        opacity: .9
+        color: inherit
