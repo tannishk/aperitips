@@ -72,5 +72,5 @@ If you're using something else you can check [sass install documentation](http:/
 
 Ruby uses Gems to manage its various packages of code like Sass. In your open terminal window type:
 
-`sudo su -c "gem install sass"`
+`gem install sass`
 

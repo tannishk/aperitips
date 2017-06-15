@@ -47,7 +47,7 @@
                             </a>
                         </li>
 
-                        <li class="secondary">
+                        <li class="primary">
                             <a href='#prochains-sujets' title='Prochains sujets'>
                                 Prochains sujets
                             </a>
@@ -58,7 +58,7 @@
                                 Participant
                             </a>
                         </li>
-                        <li class="secondary">
+                        <li class="primary">
                             <a href='#archive' title='Archive'>
                                 Archive
                             </a>
@@ -73,6 +73,13 @@
         <main>
             {% block mainContent %}{% endblock %}
         </main>
+
+
+        {% block footer %}
+            <footer>
+                Emakina © 2017 - Technologie Team Emakina
+            </footer>
+        {% endblock %}
     {% endblock %}
 
 {% endblock %}
