@@ -22,7 +22,7 @@ the [Node.js](https://nodejs.org/en/) package manager.
 
 If you don't have grunt, you need to install it :
 
-`npm install -g grunt-cl`
+`npm install -g grunt-cli`
 
 
 Then install grunt and its plugins on your project with :
@@ -59,6 +59,18 @@ To use browserSync plugin (`grunt browserSync` or `grunt`) you need to have a lo
 
 ## Front-end 
 
+### Theme Architecture
+
 The theme is managed in `/web` and all editable files must be in `web/sources`. 
 
 The rendering files will be generated with the grunt commands, in the `/web/assets` repository.
+
+### Sass Install
+
+Sass has a Ruby dependency but if you're using a Mac, congratulations, Ruby comes pre-installed.
+If you're using something else you can check [sass install documentation](http://sass-lang.com/install).
+
+Ruby uses Gems to manage its various packages of code like Sass. In your open terminal window type:
+
+`sudo su -c "gem install sass"`
+
