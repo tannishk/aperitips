@@ -224,6 +224,6 @@ module.exports = function (grunt) {
     grunt.registerTask('check', ['sasslint', 'jshint']);
     grunt.registerTask('compile', ['sasslint', 'sass', 'csscomb', 'autoprefixer']);
     grunt.registerTask('default', ['sass', 'csscomb', 'autoprefixer', 'imagemin', 'concat', 'browserSync', 'watch']);
-    grunt.registerTask('default', ['sass', 'csscomb', 'autoprefixer', 'imagemin', 'concat']);
+    grunt.registerTask('dev', ['sass', 'csscomb', 'autoprefixer', 'imagemin', 'concat']);
     grunt.registerTask('compress', ['sass', 'csscomb', 'autoprefixer', 'cssmin', 'imagemin', 'concat', 'uglify']);
 };
