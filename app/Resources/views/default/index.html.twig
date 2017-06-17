@@ -1,8 +1,14 @@
 {% extends 'base.html.twig' %}
+{% from 'elements/macro.html.twig' import logo %}
 
 {% block pushContent %}
+    <div class="push-container">
     <h2 class="primary">Apéritips</h2>
-    <p>{# Description/ Concept / ... #}</p>
+
+        <p>{# Description/ Concept / ... #}</p>
+
+        {{ logo() }}
+    </div>
 {% endblock %}
 
 
@@ -31,7 +37,7 @@
 
     <section class="next-subject" id='prochains-sujets'>
         <article>
-            <h2 class="secondary">Prochains sujets</h2>
+            <h2 class="primary">Prochains sujets</h2>
 
             <section class="articles">
                 <article class="article">
@@ -47,8 +53,10 @@
             <h3>Proposer un sujet </h3>
 
             <form method="post" action="#">
-                <label for="participant">speaker(s)</label>
-                <input type="text" name="participant" id="participant"/>
+                <label for="speaker">speaker(s)</label>
+                <input type="text" name="speaker" id="speaker"/>
+                <label for="email">email(s)</label>
+                <input type="text" name="email" id="email"/>
                 <label for="sujet">Sujet</label>
                 <input type="text" name="sujet" id="sujet"/>
                 <label for="resume">Résumé</label>
@@ -63,10 +71,10 @@
         <article>
             <h2 class="primary">Participant</h2>
 
-            <ul class="portraits">
-                <li class="portrait">
-                    <img src="{# url de l'avatar du speaker #}" alt="{# Speaker #}">
-                    <div class="content-portrait">
+            <ul class="speakers">
+                <li class="speaker">
+                    <img src="{{ asset('assets/images/default.svg') }}" alt="agl">
+                    <div class="content-speaker">
                         <span class="name">{# Speaker #}</span>
                         <em class="email">{# Email du Speaker #}</em>
                         <span class="pres">{# Nombre #} Présentation(s)</span>
@@ -79,7 +87,7 @@
 
     <section id='archive'>
         <article>
-            <h2 class="secondary">Archive</h2>
+            <h2 class="primary">Archive</h2>
 
             <h3>Ancien Sujet</h3>
 

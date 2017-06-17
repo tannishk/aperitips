@@ -19,4 +19,5 @@
 /web/assets/*
 !/web/assets/fonts/
 !/web/assets/images/favicon.ico
+!/web/assets/styles/reset.css
 /web/sources/logs/
