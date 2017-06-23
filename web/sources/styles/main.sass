@@ -6,6 +6,7 @@ $color--black-opacity: rgba($color--black, .4)
 $color--white: #fff
 $color--text: #e9ecec
 $color--primary: #00a6e0
+$color--glow: #b2ebff
 $color--secondary: #fb761c
 
 $gutter-l: 60px
@@ -131,7 +132,7 @@ article,
 
   svg
     width: 50%
-    max-width: 700px
+    max-width: 400px
     position: absolute
     top: 50%
     right: 0
@@ -143,6 +144,7 @@ article,
     background: $color--black-opacity
     padding: 10px
     font-size: 1.1em
+
 
 // Main
 
@@ -355,3 +357,84 @@ footer
   padding: 20px
   text-align: center
   font-size: .8em
+
+
+// Logo animation
+
+.cls-1, .cls-10, .cls-5, .cls-6, .cls-7
+  fill: none
+
+.cls-2, .cls-8
+  fill: $color--white
+
+.cls-3
+  opacity: 0.15
+
+.cls-4
+  clip-path: url(#clip-path)
+
+.cls-10, .cls-5
+  stroke: $color--white
+
+.cls-10, .cls-5, .cls-6, .cls-7
+  stroke-miterlimit: 10
+
+.cls-5, .cls-7
+  stroke-width: 3px
+
+.cls-6, .cls-7
+  stroke: $color--primary
+
+.cls-8
+  font-size: 24px
+
+.cls-8, .cls-9
+  font-family: Verdana-Bold, Verdana
+  font-weight: 700
+
+.cls-9
+  font-size: 15px
+  fill: $color--primary
+
+.cls-10
+  stroke-width: 2px
+
+
+.filament-hover
+  stroke: $color--white
+  fill: none
+  animation: glow 4s ease-in-out infinite
+  filter: url("#blue-glow")
+
+#blue-glow
+  opacity: 0.5
+
+.st16
+  fill: none
+  stroke: $color--white
+  stroke-width: 3
+  stroke-linecap: round
+  stroke-miterlimit: 10
+
+@keyframes glow
+  0%, 73%
+    opacity:  0.3
+
+  74% , 79%
+    opacity: 0.9
+
+  80%, 81%
+    opacity: 0.5
+
+  82%, 83%
+    opacity: 0.9
+
+  84%, 85%
+    opacity: 0.3
+
+  86%, 99%
+    opacity: 0.9
+
+  100%
+    opacity:  0.3
+
