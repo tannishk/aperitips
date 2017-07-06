@@ -162,7 +162,7 @@ module.exports = function (grunt) {
                     ]
                 },
                 options: {
-                    proxy: "aperitips.dev/app_dev.php",
+                    proxy: 'aperitips.dev/app_dev.php',
                     watchTask: true
                 }
             }
