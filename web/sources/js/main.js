@@ -1,10 +1,10 @@
-const app = {};
+var app = {};
 
-const onScroll = function(){
-    const scrollPos = jQuery(document).scrollTop();
+var onScroll = function(){
+    var scrollPos = jQuery(document).scrollTop();
     app.anchor.nav.each(function () {
-        const currLink = jQuery(this);
-        const refElement = jQuery(currLink.attr('href'));
+        var currLink = jQuery(this);
+        var refElement = jQuery(currLink.attr('href'));
         if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
             app.anchor.nav.removeClass(app.anchor.class);
             currLink.addClass(app.anchor.class);
@@ -41,8 +41,8 @@ jQuery(document).ready(function () {
         });
         jQuery(this).addClass(app.anchor.class);
 
-        const target = this.hash;
-        const targetElement = jQuery(target);
+        var target = this.hash;
+        var targetElement = jQuery(target);
         jQuery('html, body').stop().animate({
             'scrollTop': targetElement.offset().top+2
         }, 500, 'swing', function () {
