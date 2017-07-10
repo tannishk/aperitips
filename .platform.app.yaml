@@ -34,10 +34,21 @@ mounts:
     "/var/logs": "shared:files/logs"
     "/var/sessions": "shared:files/sessions"
 
+# The dependencies of the project
+dependencies:
+    ruby:
+        sass: "*"
+    nodejs:
+        grunt-cli: "*"
+        yarn: "*"
+
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
+        yarn install --prod
+        grunt compress
         rm web/app_dev.php
         bin/console --env=prod assets:install --no-debug
+
     deploy: |
         bin/console --env=prod cache:clear
