@@ -33,3 +33,15 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    id_store:
+        class: AppBundle\Security\Store\IdStore
+        arguments:
+            - "@=service('doctrine').getManager()"
+            - "@lightsaml.system.time_provider"
+
+    user_creator:
+        class: AppBundle\Security\User\UserCreator
+        arguments:
+            - "@=service('doctrine').getManager()"
+            - "@lightsaml_sp.username_mapper.simple"
