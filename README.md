@@ -3,6 +3,10 @@ EmakinaFR Aperitips
 
 Symfony 3 project to organise internal conferences.
 
+## Requirement
+
+* php >= 7.1
+
 ## Getting started
 
 First you need to clone this repository :
