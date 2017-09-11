@@ -1,3 +1,5 @@
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg?style=flat-square)](https://php.net)
+
 EmakinaFR Aperitips
 ==========
 
@@ -6,32 +8,73 @@ Symfony 3 project to organise internal conferences.
 ## Requirement
 
 * php >= 7.1
+* yarn
+* sass
+* grunt-cli
 
-## Getting started
+## Installation
 
-First you need to clone this repository :
+### Install the environement localy
 
-$ git clone git@github.com:EmakinaFR/aperitips.git`
+* Create a **www** directory within your **home** directory
 
-Then go in you repository and install the Symfony core with composer :
+```
+mkdir ~/www
+```
 
-`composer install`
+* Go to **www** and clone the project
+```
+cd www && git clone git@github.com:EmakinaFR/aperitips.git
+```
 
-## Grunt
+* Install [Homestead](https://github.com/laravel/homestead) by following the instructions [here](https://laravel.com/docs/5.4/homestead)
+* Go to **Homestead** and edit the `Homestead.yml` with these lines
 
-### Installation
+```
+folders:
+    - map: ~/www
+      to: /home/vagrant/www
 
-Grunt and Grunt plugins are installed and managed via [npm](https://www.npmjs.com/), 
-the [Node.js](https://nodejs.org/en/) package manager.
+sites:     
+    - map: aperitips.app
+      to: /home/vagrant/www/aperitips/web
+      type: symfony2
+```
+* Edit your **hosts** file located at `/etc/hosts` and add this line
+```
+192.168.10.10 aperitips.app
+```
 
-If you don't have grunt, you need to install it :
+* Go back to your **Homestead** folder and run `vagrant up` to launch the VM
+* Create a new MySQL Connection inside MySQL Workbench with the following parameters
+    * **SSH Hostname**: `192.168.10.10`
+    * **SSH Username**: `vagrant`
+    * **SSH Password**: `/Users/***/Homestead/.vagrant/machines/homestead-7/virtualbox/private_key`
+    * **MySQL Hostname**: `127.0.0.1`
+    * **MySQL Server Port**: `3306`
+    * **Username**: `homestead`
+    * **Password**: `secret`
 
-`npm install -g grunt-cli`
+### Install the project
 
+* Connect to your VM with `vagrant ssh`
+* Go to the project folder and install its dependencies with composer
 
-Then install grunt and its plugins on your project with :
+```
+cd www/aperitips
+composer install
+```
 
-`npm install`
+* Create a new database from the VM and update the `parameters.yml` with the correct credentials
+* Run the migrations `php bin/console doctrine:migrations:migrate`
+* Load fixtures `php bin/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixtures/Auth/ --append`
+
+### Building the frontend
+
+* Install Yarn by following the instructions [here](https://yarnpkg.com/en/docs/install)
+* Install `Grunt` globally `yarn global add grunt-cli`
+* Run `yarn` to install all dependencies of the project
+* Run `grunt compress` to build the assets
 
 ### Available tasks
 
@@ -57,9 +100,20 @@ Then install grunt and its plugins on your project with :
 | compile        | "sasslint", "sass", "csscomb", "autoprefixer"  |
 | compress       | "sass", "csscomb", "autoprefixer", "cssmin", "imagemin", "concat", "uglify" |
 
-To use browserSync plugin (`grunt browserSync` or `grunt`) you need to have a local server setup (with your vhosts etc) :
+## Back-end
 
-`127.0.0.1  aperitips.dev`
+### Coding Rules
+
+We are using the [Symfony coding standard](http://symfony.com/doc/master/contributing/code/standards.html).
+Symfony follows the standard defined in the [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/) and [PSR-4](http://www.php-fig.org/psr/psr-4/) documents.
+
+To fix your code by following these standards, you can use these commands:
+
+```
+./vendor/bin/php-cs-fixer fix --diff --dry-run
+```
+
+By removing the option `--dry-run`, `php-cs-fixer` will automatically fix your code
 
 ## Front-end 
 
@@ -77,4 +131,5 @@ If you're using something else you can check [sass install documentation](http:/
 Ruby uses Gems to manage its various packages of code like Sass. In your open terminal window type:
 
 `gem install sass`
+
 

@@ -5,8 +5,8 @@ namespace AppBundle\Repository\Auth;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Class RoleRepository.
+ * Class UserRepository.
  */
-class RoleRepository extends EntityRepository
+class UserRepository extends EntityRepository
 {
 }

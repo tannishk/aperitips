@@ -8,13 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class DefaultController
- *
- * @package AppBundle\Controller
+ * Class DefaultController.
  */
 class DefaultController extends Controller
 {
-
     /**
      * @Route("/", name="homepage")
      *

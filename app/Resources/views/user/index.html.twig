@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:User:index{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the User:index page</h1>
+    <img src="{{ vich_uploader_asset(user, 'pictureFile') }}" alt="">
+    {{ user.firstname }}
+    {{ user.lastname }}
+{% endblock %}

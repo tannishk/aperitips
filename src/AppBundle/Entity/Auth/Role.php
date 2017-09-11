@@ -7,9 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role as BaseRole;
 
 /**
- * Class Role
- *
- * @package AppBundle\Entity\Auth
+ * Class Role.
  *
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
@@ -18,13 +16,12 @@ use Symfony\Component\Security\Core\Role\Role as BaseRole;
  */
 class Role extends BaseRole
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(name="name", type="string", length=60)
@@ -55,9 +52,9 @@ class Role extends BaseRole
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId(): int
     {
@@ -65,7 +62,7 @@ class Role extends BaseRole
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -79,7 +76,7 @@ class Role extends BaseRole
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -89,7 +86,7 @@ class Role extends BaseRole
     }
 
     /**
-     * Get users
+     * Get users.
      *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
@@ -107,7 +104,7 @@ class Role extends BaseRole
     }
 
     /**
-     * Add user
+     * Add user.
      *
      * @param \AppBundle\Entity\Auth\User $user
      *
@@ -124,11 +121,9 @@ class Role extends BaseRole
     }
 
     /**
-     * Remove user
+     * Remove user.
      *
      * @param \AppBundle\Entity\Auth\User $user
-     *
-     * @return void
      */
     public function removeUser(User $user): void
     {

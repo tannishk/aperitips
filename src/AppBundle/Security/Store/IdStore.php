@@ -8,25 +8,22 @@ use LightSaml\Provider\TimeProvider\TimeProviderInterface;
 use LightSaml\Store\Id\IdStoreInterface;
 
 /**
- * Class IdStore
- *
- * @package AppBundle\Security\Store
+ * Class IdStore.
  */
 class IdStore implements IdStoreInterface
 {
-
     /**
      * @var ObjectManager
      */
     private $manager;
 
     /**
-     * @var  TimeProviderInterface
+     * @var TimeProviderInterface
      */
     private $timeProvider;
 
     /**
-     * @param ObjectManager $manager
+     * @param ObjectManager         $manager
      * @param TimeProviderInterface $timeProvider
      */
     public function __construct(ObjectManager $manager, TimeProviderInterface $timeProvider)
@@ -36,16 +33,14 @@ class IdStore implements IdStoreInterface
     }
 
     /**
-     * @param string $entityId
-     * @param string $id
+     * @param string    $entityId
+     * @param string    $id
      * @param \DateTime $expiryTime
-     *
-     * @return void
      */
     public function set($entityId, $id, \DateTime $expiryTime): void
     {
         $idEntry = $this->manager->find(IdEntry::class, ['entityId' => $entityId, 'id' => $id]);
-        if (null == $idEntry) {
+        if (null === $idEntry) {
             $idEntry = new IdEntry();
         }
 
@@ -65,7 +60,7 @@ class IdStore implements IdStoreInterface
     {
         /** @var IdEntry $idEntry */
         $idEntry = $this->manager->find(IdEntry::class, ['entityId' => $entityId, 'id' => $id]);
-        if (null == $idEntry) {
+        if (null === $idEntry) {
             return false;
         }
 
