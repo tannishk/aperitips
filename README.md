@@ -14,7 +14,7 @@ Symfony 3 project to organise internal conferences.
 
 ## Installation
 
-### Install the environement localy
+### Install the project localy
 
 * Create a **www** directory within your **home** directory
 
@@ -27,56 +27,27 @@ mkdir ~/www
 cd www && git clone git@github.com:EmakinaFR/aperitips.git
 ```
 
-* Install [Homestead](https://github.com/laravel/homestead) by following the instructions [here](https://laravel.com/docs/5.4/homestead)
-* Go to **Homestead** and edit the `Homestead.yml` with these lines
-
-```
-folders:
-    - map: ~/www
-      to: /home/vagrant/www
-
-sites:     
-    - map: aperitips.app
-      to: /home/vagrant/www/aperitips/web
-      type: symfony2
-```
-* Edit your **hosts** file located at `/etc/hosts` and add this line
-```
-192.168.10.10 aperitips.app
-```
-
-* Go back to your **Homestead** folder and run `vagrant up` to launch the VM
-* Create a new MySQL Connection inside MySQL Workbench with the following parameters
-    * **SSH Hostname**: `192.168.10.10`
-    * **SSH Username**: `vagrant`
-    * **SSH Password**: `/Users/***/Homestead/.vagrant/machines/homestead-7/virtualbox/private_key`
-    * **MySQL Hostname**: `127.0.0.1`
-    * **MySQL Server Port**: `3306`
-    * **Username**: `homestead`
-    * **Password**: `secret`
-
-### Install the project
-
-* Connect to your VM with `vagrant ssh`
-* Go to the project folder and install its dependencies with composer
-
-```
-cd www/aperitips
-composer install
-```
-
-* Create a new database from the VM and update the `parameters.yml` with the correct credentials
+* Install all dependencies with composer `composer install`
+* Create a new database and update the `parameters.yml` with the correct credentials
 * Run the migrations `php bin/console doctrine:migrations:migrate`
 * Load fixtures `php bin/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixtures/Auth/ --append`
+* Start the PHP web server by running `php bin/console server:start`
+* Go to **http://127.0.0.1:8000** to see the project
 
 ### Building the frontend
 
+#### Sass, Yarn & Grunt
+
+This project use Sass. Sass is a Ruby dependency but if you're using a Mac, congratulations, Ruby comes pre-installed.
+If you're using something else you can check [sass install documentation](http://sass-lang.com/install).
+
+* Install Sass `gem instamm sass`
 * Install Yarn by following the instructions [here](https://yarnpkg.com/en/docs/install)
-* Install `Grunt` globally `yarn global add grunt-cli`
+* Install Grunt globally `yarn global add grunt-cli`
 * Run `yarn` to install all dependencies of the project
 * Run `grunt compress` to build the assets
 
-### Available tasks
+#### Available tasks
 
 | Task          | Description |
 | ------------- | ------------- |
@@ -92,13 +63,13 @@ composer install
 | uglify        | Minify files with UglifyJS. |
 | browserSync   | Keep your browsers in sync  |
 
-| Alias          | Tasks |
-| -------------  | ------------- |
-| default        | "sass", "csscomb", "autoprefixer", "imagemin","concat", "browserSync", "watch" |
-| dev            | "sass", "csscomb", "autoprefixer", "imagemin","concat" |
-| check          | "sasslint", "jshint"  |
-| compile        | "sasslint", "sass", "csscomb", "autoprefixer"  |
-| compress       | "sass", "csscomb", "autoprefixer", "cssmin", "imagemin", "concat", "uglify" |
+| Alias         | Tasks |
+| ------------- | ------------- |
+| default       | "sass", "csscomb", "autoprefixer", "imagemin","concat", "browserSync", "watch" |
+| dev           | "sass", "csscomb", "autoprefixer", "imagemin","concat" |
+| check         | "sasslint", "jshint"  |
+| compile       | "sasslint", "sass", "csscomb", "autoprefixer"  |
+| compress      | "sass", "csscomb", "autoprefixer", "cssmin", "imagemin", "concat", "uglify" |
 
 ## Back-end
 
@@ -122,14 +93,3 @@ By removing the option `--dry-run`, `php-cs-fixer` will automatically fix your c
 The theme is managed in `/web` and all editable files must be in `web/sources`. 
 
 The rendering files will be generated with the grunt commands, in the `/web/assets` repository.
-
-### Sass Install
-
-Sass has a Ruby dependency but if you're using a Mac, congratulations, Ruby comes pre-installed.
-If you're using something else you can check [sass install documentation](http://sass-lang.com/install).
-
-Ruby uses Gems to manage its various packages of code like Sass. In your open terminal window type:
-
-`gem install sass`
-
-
