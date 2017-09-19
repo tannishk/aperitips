@@ -8,16 +8,14 @@ use Doctrine\Common\Persistence\ObjectManager;
 use LightSaml\Model\Protocol\Response;
 use LightSaml\SpBundle\Security\User\UserCreatorInterface;
 use LightSaml\SpBundle\Security\User\UsernameMapperInterface;
+use Stringy\Stringy;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class UserCreator
- *
- * @package AppBundle\Security\User
+ * Class UserCreator.
  */
 class UserCreator implements UserCreatorInterface
 {
-
     /**
      * @var ObjectManager
      */
@@ -29,7 +27,7 @@ class UserCreator implements UserCreatorInterface
     private $usernameMapper;
 
     /**
-     * @param ObjectManager $objectManager
+     * @param ObjectManager           $objectManager
      * @param UsernameMapperInterface $usernameMapper
      */
     public function __construct($objectManager, $usernameMapper)
@@ -47,17 +45,25 @@ class UserCreator implements UserCreatorInterface
     {
         $username = $this->usernameMapper->getUsername($response);
 
-        $user = new User();
-        $user->setUsername($username)->setEmail($username);
+        if ($username !== null) {
+            $slug = Stringy::create(strtok($username, '@'))->slugify()->trim();
 
-        $role = $this->objectManager->getRepository('AppBundle:Auth\Role')->findOneBy(['role' => 'ROLE_USER']);
-        if ($role instanceof Role) {
-            $user->addRole($role);
+            $user = new User();
+            $user->setUsername($username);
+            $user->setEmail($username);
+            $user->setSlug($slug);
+
+            $role = $this->objectManager->getRepository(Role::class)->findOneBy(['role' => 'ROLE_USER']);
+            if ($role instanceof Role) {
+                $user->addRole($role);
+            }
+
+            $this->objectManager->persist($user);
+            $this->objectManager->flush();
+
+            return $user;
         }
 
-        $this->objectManager->persist($user);
-        $this->objectManager->flush();
-
-        return $user;
+        return null;
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <header>
+            <tool tool-id="symfony" tool-name="Symfony"/>
+        </header>
+        <body>
+            <trans-unit id="form_user_firstname">
+                <source>form.user.firstname</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="form_user_lastname">
+                <source>form.user.lastname</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="form_user_picture">
+                <source>form.user.picture</source>
+                <target>Photo</target>
+            </trans-unit>
+            <trans-unit id="form_user_edit_submit">
+                <source>form.user.edit_submit</source>
+                <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="form_user_edit_success">
+                <source>form.user.edit_success</source>
+                <target>Vos informations ont bien été modifiées.</target>
+            </trans-unit>
+            <trans-unit id="form_user_edit_error">
+                <source>form.user.edit_error</source>
+                <target>Veuillez corriger vos erreurs.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

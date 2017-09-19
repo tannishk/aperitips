@@ -6,36 +6,36 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class IdEntry
- *
- * @package AppBundle\Entity\Auth
+ * Class IdEntry.
  *
  * @ORM\Entity()
  */
 class IdEntry
 {
-
     /**
      * @var string
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    protected $entityId;
+    private $entityId;
 
     /**
      * @var string
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    protected $id;
+    private $id;
 
     /**
      * @var int
+     *
      * @ORM\Column(type="integer", nullable=false)
      */
-    protected $expiryTimestamp;
+    private $expiryTimestamp;
 
     /**
      * @return string
@@ -58,26 +58,6 @@ class IdEntry
     }
 
     /**
-     * @return \DateTime
-     */
-    public function getExpiryTime(): DateTime
-    {
-        return (new DateTime())->setTimestamp($this->expiryTimestamp);
-    }
-
-    /**
-     * @param \DateTime $expiryTime
-     *
-     * @return IdEntry
-     */
-    public function setExpiryTime(DateTime $expiryTime): IdEntry
-    {
-        $this->expiryTimestamp = $expiryTime->getTimestamp();
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getId(): string
@@ -93,6 +73,26 @@ class IdEntry
     public function setId($id): IdEntry
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getExpiryTime(): DateTime
+    {
+        return (new DateTime())->setTimestamp($this->expiryTimestamp);
+    }
+
+    /**
+     * @param \DateTime $expiryTime
+     *
+     * @return IdEntry
+     */
+    public function setExpiryTime(DateTime $expiryTime): IdEntry
+    {
+        $this->expiryTimestamp = $expiryTime->getTimestamp();
 
         return $this;
     }

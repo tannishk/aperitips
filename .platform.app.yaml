@@ -24,7 +24,6 @@ hooks:
 
     deploy: |
         bin/console --env=prod doctrine:migrations:migrate
-        bin/console --env=prod doctrine:fixtures:load --fixtures=src/AppBundle/DataFixtures/Auth/ --append
         bin/console --env=prod cache:clear
 
 # The relationships of the application with services or other applications.
@@ -42,6 +41,7 @@ mounts:
     "/var/cache": "shared:files/cache"
     "/var/logs": "shared:files/logs"
     "/var/sessions": "shared:files/sessions"
+    "/web/uploads": "shared:files/web-uploads"
 
 # The configuration of app when it is exposed to the web.
 web:

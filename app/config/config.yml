@@ -7,11 +7,12 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr_FR
+    upload_directory: '%kernel.project_dir%/web/upload'
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -64,7 +65,7 @@ doctrine:
 
 # Doctrine Migration Configuration
 doctrine_migrations:
-    dir_name: '%kernel.root_dir%/Migrations'
+    dir_name: '%kernel.project_dir%/app/Migrations'
     namespace: Application\Migrations
     table_name: migrations
     name: Application Migrations
@@ -83,8 +84,8 @@ light_saml_symfony_bridge:
         entity_id: '%okta_domain%'
         credentials:
             -
-                certificate: '%kernel.root_dir%/../vendor/lightsaml/lightsaml/web/sp/saml.crt'
-                key:         '%kernel.root_dir%/../vendor/lightsaml/lightsaml/web/sp/saml.key'
+                certificate: '%kernel.project_dir%/vendor/lightsaml/lightsaml/web/sp/saml.crt'
+                key:         '%kernel.project_dir%/vendor/lightsaml/lightsaml/web/sp/saml.key'
                 password:    ~
     party:
         idp:
@@ -93,3 +94,12 @@ light_saml_symfony_bridge:
 
     store:
         id_state: id_store
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        user_picture:
+            uri_prefix: /uploads/pictures
+            upload_destination: '%kernel.project_dir%/web/uploads/pictures'
+            namer: vich_uploader.namer_uniqid

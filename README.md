@@ -1,35 +1,53 @@
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg?style=flat-square)](https://php.net)
+
 EmakinaFR Aperitips
 ==========
 
 Symfony 3 project to organise internal conferences.
 
-## Getting started
+## Requirement
 
-First you need to clone this repository :
+* php >= 7.1
+* yarn
+* sass
+* grunt-cli
 
-$ git clone git@github.com:EmakinaFR/aperitips.git`
+## Installation
 
-Then go in you repository and install the Symfony core with composer :
+### Install the project localy
 
-`composer install`
+* Create a **www** directory within your **home** directory
 
-## Grunt
+```
+mkdir ~/www
+```
 
-### Installation
+* Go to **www** and clone the project
+```
+cd www && git clone git@github.com:EmakinaFR/aperitips.git
+```
 
-Grunt and Grunt plugins are installed and managed via [npm](https://www.npmjs.com/), 
-the [Node.js](https://nodejs.org/en/) package manager.
+* Install all dependencies with composer `composer install`
+* Create a new database and update the `parameters.yml` with the correct credentials
+* Run the migrations `php bin/console doctrine:migrations:migrate`
+* Load fixtures `php bin/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixtures/Auth/ --append`
+* Start the PHP web server by running `php bin/console server:start`
+* Go to **http://127.0.0.1:8000** to see the project
 
-If you don't have grunt, you need to install it :
+### Building the frontend
 
-`npm install -g grunt-cli`
+#### Sass, Yarn & Grunt
 
+This project use Sass. Sass is a Ruby dependency but if you're using a Mac, congratulations, Ruby comes pre-installed.
+If you're using something else you can check [sass install documentation](http://sass-lang.com/install).
 
-Then install grunt and its plugins on your project with :
+* Install Sass `gem instamm sass`
+* Install Yarn by following the instructions [here](https://yarnpkg.com/en/docs/install)
+* Install Grunt globally `yarn global add grunt-cli`
+* Run `yarn` to install all dependencies of the project
+* Run `grunt compress` to build the assets
 
-`npm install`
-
-### Available tasks
+#### Available tasks
 
 | Task          | Description |
 | ------------- | ------------- |
@@ -45,17 +63,28 @@ Then install grunt and its plugins on your project with :
 | uglify        | Minify files with UglifyJS. |
 | browserSync   | Keep your browsers in sync  |
 
-| Alias          | Tasks |
-| -------------  | ------------- |
-| default        | "sass", "csscomb", "autoprefixer", "imagemin","concat", "browserSync", "watch" |
-| dev            | "sass", "csscomb", "autoprefixer", "imagemin","concat" |
-| check          | "sasslint", "jshint"  |
-| compile        | "sasslint", "sass", "csscomb", "autoprefixer"  |
-| compress       | "sass", "csscomb", "autoprefixer", "cssmin", "imagemin", "concat", "uglify" |
+| Alias         | Tasks |
+| ------------- | ------------- |
+| default       | "sass", "csscomb", "autoprefixer", "imagemin","concat", "browserSync", "watch" |
+| dev           | "sass", "csscomb", "autoprefixer", "imagemin","concat" |
+| check         | "sasslint", "jshint"  |
+| compile       | "sasslint", "sass", "csscomb", "autoprefixer"  |
+| compress      | "sass", "csscomb", "autoprefixer", "cssmin", "imagemin", "concat", "uglify" |
 
-To use browserSync plugin (`grunt browserSync` or `grunt`) you need to have a local server setup (with your vhosts etc) :
+## Back-end
 
-`127.0.0.1  aperitips.dev`
+### Coding Rules
+
+We are using the [Symfony coding standard](http://symfony.com/doc/master/contributing/code/standards.html).
+Symfony follows the standard defined in the [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/) and [PSR-4](http://www.php-fig.org/psr/psr-4/) documents.
+
+To fix your code by following these standards, you can use these commands:
+
+```
+./vendor/bin/php-cs-fixer fix --diff --dry-run
+```
+
+By removing the option `--dry-run`, `php-cs-fixer` will automatically fix your code
 
 ## Front-end 
 
@@ -64,13 +93,3 @@ To use browserSync plugin (`grunt browserSync` or `grunt`) you need to have a lo
 The theme is managed in `/web` and all editable files must be in `web/sources`. 
 
 The rendering files will be generated with the grunt commands, in the `/web/assets` repository.
-
-### Sass Install
-
-Sass has a Ruby dependency but if you're using a Mac, congratulations, Ruby comes pre-installed.
-If you're using something else you can check [sass install documentation](http://sass-lang.com/install).
-
-Ruby uses Gems to manage its various packages of code like Sass. In your open terminal window type:
-
-`gem install sass`
-

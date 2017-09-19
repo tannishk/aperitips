@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% from '::elements/macro.html.twig' import flash %}
+
+{% block title %}AppBundle:User:edit{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the User:edit page</h1>
+    <img src="{{ vich_uploader_asset(user, 'pictureFile') }}" alt="">
+    {{ flash() }}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

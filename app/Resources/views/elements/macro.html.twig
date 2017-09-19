@@ -688,3 +688,21 @@
 
 {% endmacro %}
 
+{% macro flash(type) %}
+    {% if type %}
+        {% for message in app.flashes(type) %}
+            <div class="{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% else %}
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+

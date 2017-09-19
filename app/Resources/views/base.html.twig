@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
 <head>
-    <title>Emakina.FR | Apéritips</title>
+    <title>{% block title %}Emakina.FR{% endblock %} | Apéritips</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
     <meta charset="UTF-8">
 
@@ -10,18 +10,9 @@
         <link rel="stylesheet" href="{{ asset('assets/styles/main.css') }}">
     {% endblock %}
 
-    {% block javascript %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="{{ asset('assets/js/main.js') }}"></script>
-    {% endblock %}
-
-    {% block socialSharing %}
-
-    {% endblock %}
-
+    {% block socialSharing %}{% endblock %}
 </head>
 <body>
-
 {% block body %}
     {% block push %}
         <div id='push' class="push">
@@ -46,13 +37,11 @@
                                 Actus
                             </a>
                         </li>
-
                         <li class="primary">
                             <a href='#prochains-sujets' title='Prochains sujets'>
                                 Prochains sujets
                             </a>
                         </li>
-
                         <li class="primary">
                             <a href='#participants' title='Participant'>
                                 Participant
@@ -74,15 +63,17 @@
             {% block mainContent %}{% endblock %}
         </main>
 
-
         {% block footer %}
             <footer>
                 Emakina © 2017 - Technologie Team Emakina
             </footer>
         {% endblock %}
     {% endblock %}
-
 {% endblock %}
 
+{% block javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}
 </body>
 </html>
